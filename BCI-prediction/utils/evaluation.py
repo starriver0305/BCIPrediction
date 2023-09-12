@@ -12,13 +12,13 @@ def plot_matrix(conf_matrix, name):
     plt.imshow(class_accuracy, cmap=plt.get_cmap('Blues'))
     plt.grid(False)
     plt.colorbar()
-    axis_label = np.array(['Negative', 'Positive'])
+    axis_label = np.array(['0', '1', '2'])
     num_local = np.array(range(len(axis_label)))
     plt.xticks(num_local, axis_label, fontsize=12)
     plt.yticks(num_local, axis_label, fontsize=12)
     thresh = 0.5
-    for i in range(2):
-        for j in range(2):
+    for i in range(len(conf_matrix)):
+        for j in range(len(conf_matrix)):
             plt.text(j, i, '{:.2f}'.format(class_accuracy[i][j] * 100) + '%', ha="center", va="center",
                      color="black" if conf_matrix[i][j] > thresh else "while")
     plt.savefig(name + 'Confusion_Matrix' + '.png')
@@ -45,7 +45,6 @@ def evaluate(y_true, y_pred, name, draw=False):
     print("精确率:", precision)
     print("召回率:", recall)
     print("F1分数:", f1)
-    # 计算ROC曲线
 
     if draw:
         plot_matrix(conf_matrix, name)

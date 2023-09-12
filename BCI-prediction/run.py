@@ -1,14 +1,12 @@
 import numpy as np
 import pandas as pd
-import configparser
 import sys
 from sklearn.model_selection import StratifiedKFold
 from models import model_dict
 from utils import evaluation
 
-config = configparser.ConfigParser()
-config.read('../config.ini')
-data_path = config['path']['data_path']
+
+data_path = '../EmotivBCI-Data.csv'
 loc_label = ['EEG.AF3', 'EEG.F7', 'EEG.F3', 'EEG.FC5', 'EEG.T7', 'EEG.P7', 'EEG.O1', 'EEG.O2', 'EEG.P8', 'EEG.T8',
              'EEG.FC6', 'EEG.F4', 'EEG.F8', 'EEG.AF4']
 

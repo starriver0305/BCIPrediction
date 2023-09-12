@@ -8,20 +8,20 @@ class NeuralNetwork:
     def __init__(self):
         self.models = Sequential(
             [
-                Dense(256, activation='relu', name='l1'),
-                Dense(128, activation='relu', name='l2'),
-                Dense(3, activation='linear', name='l3')
+                Dense(512, activation='relu', name='l1'),
+                Dense(256, activation='relu', name='l2'),
+                Dense(3, activation='linear', name='l4')
             ]
         )
         self.models.compile(
             loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-            optimizer=tf.keras.optimizers.Adam(0.0005)
+            optimizer=tf.keras.optimizers.Adam(0.0003)
         )
 
     def fit(self, X_train, Y_train):
         self.models.fit(
             X_train, Y_train,
-            epochs=100
+            epochs=500
         )
 
     def predict(self, Y_test):
